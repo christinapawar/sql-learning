@@ -1,0 +1,9 @@
+create database if not exists ba_practice;
+use ba_practice;
+create table sales_data (order_ID INT, customer_name varchar(50), city  varchar(50), product varchar(50), amount INT, order_date DATE);
+insert into sales_data values (1, 'riya', 'mumbai', 'laptop',55000, '2024-04-23'),  (2, 'dia', 'nagpur', 'mobile', 43000, '2025-12-23'), (3, 'nisha', 'loni', 'laptop', 60000, '2025-04-24'), (4, 'harsh', 'gondia', 'mobile', 50000, '2025-02-16');
+select * from sales_data;
+select sum(amount) from sales_data;
+select city, sum(amount) from sales_data group by city;
+select customer_name, sum(amount) from sales_data group by customer_name;
+select max(amount) from sales_data;
