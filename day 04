@@ -1,0 +1,31 @@
+CREATE TABLE customers (
+    customer_id INT PRIMARY KEY,
+    customer_name VARCHAR(50),
+    city VARCHAR(50)
+);
+INSERT INTO customers VALUES
+(1, 'Asha', 'Mumbai'),
+(2, 'Ravi', 'Delhi'),
+(3, 'Meena', 'Chennai'),
+(4, 'Arjun', 'Mumbai');
+CREATE TABLE orders (
+    order_id INT PRIMARY KEY,
+    customer_id INT,
+    amount DECIMAL(10,2),
+    order_date DATE
+);
+INSERT INTO orders VALUES
+(101, 1, 500.00, '2026-02-01'),
+(102, 2, 1200.00, '2026-02-02'),
+(103, 1, 700.00, '2026-02-05'),
+(104, 3, 300.00, '2026-02-06');
+SELECT c.customer_name, o.order_id, o.amount
+FROM customers c
+INNER JOIN orders o
+ON c.customer_id = o.customer_id;
+SELECT c.customer_name, o.order_id
+FROM customers c
+LEFT JOIN orders o
+ON c.customer_id = o.customer_id;
+select c.customer_name, sum(o.amount) as total_spent from customers c left join orders o on c.customers_id = o.customers_id group by c.customer_name;
+select c.customer_name, sum(o.amount) as total_spent from customers c left join orders o on c.customers_id = o.customers_id where c.city = 'mumbai' group by c.customer_name;
